@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h1> chatting with <%= name %></h1>
+    <input type="text" id="msg">
+     <input type="hidden" id="email" value= <%= email %>>
+     <input type="button" onclick= "sendMessage()" value="send message">
+     <h4 id="list"></h4>
+    <script>
+      
+        const socket = io("http://localhost:8000")
+        socket.on("connection")
+
+        const email = document.getElementById("email").value
+        socket.on(`${email}`,(data)=>{
+            console.log("list",data.message)
+            document.getElementById('list').innerHTML = data.message
+        })
+
+        const sendMessage = ()=>{
+           const message = document.getElementById("msg").value
+           const data = { email, message} 
+           socket.emit(`${email}`, data)
+           document.querySelector('input').value = '' 
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+</head>
+<body>
+    <h1>this is profile </h1>
+        <% for(var i = 0; i<friends.length; i++) {%>
+            <form action="http://localhost:8000/chatting" method="post">
+                <input type="hidden" name="name" value= <%= friends[i].name %>>
+                <input type="hidden" name="email" value= <%= friends[i].email %>>
+                <input type="hidden" name="loginEmail" value= <%= loginUserEmail %>>
+                <div class="card">
+                <div class="container">
+                    <h3><%= friends[i].name%></h3>
+                    <h3><%= friends[i].email%></h3>
+                    <input type="submit" value="chatting">
+                </div>
+                </div>
+            </form>
+        <% } %>
+</body>
+</html>
